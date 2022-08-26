@@ -1,0 +1,45 @@
+import java.util.*;
+
+public class tahminbotu {
+
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int baş = 512, range = 1024, tutulan = (int) ((Math.random()) * (range + 1)), guess = -1, botguess = baş, i = 8,
+				tur = 0;
+		System.err.println("Rastgele 0 ve 1024 aralığında sayı tutuldu. ");
+		// --------------------------------------------------------------------
+		while (guess != tutulan || botguess != tutulan) {
+			System.out.println("Bir sayı tutun: ");
+			guess = in.nextInt();
+			if (guess > tutulan) {
+				System.out.println("Tutulan sayının üzerindesiniz!");
+			} else if (guess < tutulan) {
+				System.out.println("Tutulan sayının altındasınız!");
+			} else if (guess == tutulan) {
+				System.err.println("Doğru Cevap!!");
+				System.out.println("Tutulan sayı " + tutulan + " dır." + "\ntur sayısı: " + tur);
+				break;
+			}
+			// --------------------------------------------------------------------
+			if (botguess > tutulan) {
+				botguess = (int) (botguess - (Math.pow(2, i)));
+				System.out.println("Bot sayı tuttu.");
+				if (botguess == tutulan) {
+					System.err.println("Bot Kazandı!!\nTutulan sayı: " + tutulan + "\ntur sayısı: " + tur);
+					break;
+				}
+				i--;
+			} else if (botguess < tutulan) {
+				botguess = (int) (botguess + (Math.pow(2, i)));
+				System.out.println("Bot sayı tuttu.");
+				if (botguess == tutulan) {
+					System.err.println("Bot Kazandı!!\nTutulan sayı: " + tutulan + "\ntur sayısı: " + tur);
+					break;
+				}
+				i--;
+			}
+			tur++;
+		}
+	}
+
+}
